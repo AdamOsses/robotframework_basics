@@ -8,7 +8,7 @@ library   SSHLibrary
 ${POWITANIE}   Dzien dobry jasnie oswiecony uzytkowniku.
 ${SPACE_X_ADDRESS}   https://api.spacexdata.com/v4/launches/latest
 
-${USER}   ___
+${USER}  ___
 ${PASSWORD}   ___
 ${HOST}   localhost
 
@@ -41,9 +41,7 @@ Wersja Systemu Test
 
 Polacz Z Internetem Test
   Logowanie lokalne
-  ${ODPOWIEDZ}=   execute command   ping -c1 8.8.8.8
-  Log to console    ${ODPOWIEDZ}
-  should contain   ${ODPOWIEDZ}   0% packet loss
+  Sprawdzenie polaczenia internetowego
   Wylogowanie
 
 *** Keywords ***
@@ -61,3 +59,8 @@ Wywolanie komendy i sprawdzenie wyniku
 
 Wylogowanie
   close all connections
+
+Sprawdzenie polaczenia internetowego
+  ${ODPOWIEDZ}=   execute command   ping -c1 8.8.8.8
+  Log to console    ${ODPOWIEDZ}
+  should contain   ${ODPOWIEDZ}   , 0% packet loss
