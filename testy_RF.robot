@@ -1,10 +1,14 @@
 *** Settings ***
+
 library   lacz_stringi.py
 library   RequestsLibrary
 library   Collections
 library   SSHLibrary
+library   SeleniumLibrary
+
 
 *** Variables ***
+
 ${POWITANIE}   Dzien dobry jasnie oswiecony uzytkowniku.
 ${SPACE_X_ADDRESS}   https://api.spacexdata.com/v4/launches/latest
 
@@ -12,13 +16,23 @@ ${USER}  ___
 ${PASSWORD}   ___
 ${HOST}   localhost
 
+${UZYTKOWNIK}   ___
+${HASLO_TEKST}  ___
+${BROWSER}   Firefox
+${WP_URL}   https://profil.wp.pl/login/login.html
+${LOGIN}  //*[@id="login"]
+${HASLO}  //*[@id="password"]
+${RODO}   //button[contains(text(),'PRZECHODZ')]
+${PRZYCISK_ZALOGOJ}   //button[@type="submit"]
+
+
 *** Test Cases ***
+
 My Test
   Log to console   Dzien dobry
 
 My Second Test
    Log to console   ${POWITANIE}
-   Log to console   ${SPACE_X_ADDRESS}
 
 Lacz Stringi Test
   ${WYNIK}=   lacz_stringi   Czas   na nauke.
@@ -44,7 +58,15 @@ Polacz Z Internetem Test
   Sprawdzenie polaczenia internetowego
   Wylogowanie
 
+Zalogoj Na WP Test
+  Otwarcie przegladarki
+  Zalogowanie na strone WP
+  Sprawdzenie zalogowania
+  Wylogowanie sie ze strony WP
+
+
 *** Keywords ***
+
 Wypisz Na Ekran
   [Arguments]   ${WYPISZ}
   Log to console   ${WYPISZ}
@@ -64,3 +86,22 @@ Sprawdzenie polaczenia internetowego
   ${ODPOWIEDZ}=   execute command   ping -c1 8.8.8.8
   Log to console    ${ODPOWIEDZ}
   should contain   ${ODPOWIEDZ}   , 0% packet loss
+
+Otwarcie przegladarki
+  OpenBrowser   about:blank   ${BROWSER}
+  Go to   ${WP_URL}
+  Sleep   10
+
+Zalogowanie na strone WP
+  Click element   ${RODO}
+  Sleep   10
+  Input text   ${LOGIN}   ${UZYTKOWNIK}
+  Input text   ${HASLO}   ${HASLO_TEKST}
+  Click button   ${PRZYCISK_ZALOGOJ}
+  Sleep   5
+
+Sprawdzenie zalogowania
+    Page should contain   Odebrane
+
+Wylogowanie sie ze strony WP
+  Close all browsers
