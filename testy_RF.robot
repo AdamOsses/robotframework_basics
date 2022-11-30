@@ -48,12 +48,15 @@ Wyswietl Strone Space-X Test
   Log to console   Sprawdzam czy jest tekst: ${NAME}
   Should Be Equal   ${NAME}   Crew-5
 
-Wersja Systemu Test
+Wersja Systemu Test  
   Logowanie lokalne
   Wywolanie komendy i sprawdzenie wyniku
   Wylogowanie
 
 Polacz Z Internetem Test
+  [Documentation]   Testing internet connection
+  ...               pinging 8.8.8.8
+
   Logowanie lokalne
   Sprawdzenie polaczenia internetowego
   Wylogowanie
