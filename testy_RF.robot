@@ -12,6 +12,9 @@ library   SeleniumLibrary
 ${POWITANIE}   Dzien dobry jasnie oswiecony uzytkowniku.
 ${SPACE_X_ADDRESS}   https://api.spacexdata.com/v4/launches/latest
 
+${var_1}=   ${10}  # int
+${var_2}=   ${15}
+
 ${USER}  ___
 ${PASSWORD}   ___
 ${HOST}   localhost
@@ -28,11 +31,13 @@ ${PRZYCISK_ZALOGOJ}   //button[@type="submit"]
 
 *** Test Cases ***
 
-My Test
+Log To Console Test
   Log to console   Dzien dobry
+  Log to console   ${POWITANIE}
 
-My Second Test
-   Log to console   ${POWITANIE}
+Math Test
+  ${result}=   Evaluate   ${var_1} + ${var_2}
+  Should be Equal   ${result}   ${25}
 
 Lacz Stringi Test
   ${WYNIK}=   lacz_stringi   Czas   na nauke.
@@ -48,7 +53,7 @@ Wyswietl Strone Space-X Test
   Log to console   Sprawdzam czy jest tekst: ${NAME}
   Should Be Equal   ${NAME}   Crew-5
 
-Wersja Systemu Test  
+Wersja Systemu Test
   Logowanie lokalne
   Wywolanie komendy i sprawdzenie wyniku
   Wylogowanie
