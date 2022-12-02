@@ -54,6 +54,7 @@ Wyswietl Strone Space-X Test
   Should Be Equal   ${NAME}   Crew-5
 
 Wersja Systemu Test
+  Fail   Fill username and password variables first.
   Logowanie lokalne
   Wywolanie komendy i sprawdzenie wyniku
   Wylogowanie
@@ -61,12 +62,13 @@ Wersja Systemu Test
 Polacz Z Internetem Test
   [Documentation]   Testing internet connection
   ...               pinging 8.8.8.8
-
+  Fail   Fill username and password variables first..
   Logowanie lokalne
   Sprawdzenie polaczenia internetowego
   Wylogowanie
 
 Zalogoj Na WP Test
+  Fail   Fill username and password variables first...
   Otwarcie przegladarki
   Zalogowanie na strone WP
   Sprawdzenie zalogowania
