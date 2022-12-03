@@ -32,26 +32,33 @@ ${PRZYCISK_ZALOGOJ}   //button[@type="submit"]
 *** Test Cases ***
 
 Log To Console And For Loops Test
+  [Tags]     linux   keywords
   Log to console   Dzien dobry
+
   FOR   ${i}   IN RANGE   10
     Log to console   ${POWITANIE}
   END
+
   FOR   ${name}   IN   ksieciuniu   o najwspanialszy   o najdoskonalszy   o najszlachetniejszy
     Log to console   Dzien dobry ${name}.
   END
 
 Math Test
+  [Tags]     linux   math
   ${result}=   Evaluate   ${var_1} + ${var_2}
   Should be Equal   ${result}   ${25}
 
 Lacz Stringi Test
+  [Tags]     linux   python
   ${WYNIK}=   lacz_stringi   Czas   na nauke.
   Should Be Equal   ${WYNIK}   Czas na nauke.
 
 Wypisz Na Ekran Test
+  [Tags]     linux   keywords
   Wypisz Na Ekran   Bum tralala chlapie fala.
 
 Wyswietl Strone Space-X Test
+  [Tags]     linux   ssh
   ${TEST_STRONY}=   Get   ${SPACE_X_ADDRESS}   expected_status=200
   log   ${TEST_STRONY.json()}   formatter=repr
   ${NAME}=   get from dictionary  ${TEST_STRONY.json()}  name
@@ -59,7 +66,7 @@ Wyswietl Strone Space-X Test
   Should Be Equal   ${NAME}   Crew-5
 
 Wersja Systemu Test
-  #Fail   Fill username and password variables first.
+  [Tags]     linux   keywords   ssh
   ${password_len}=   Get Length   ${PASSWORD}
   IF   ${password_len} < 4
      Skip   Fill username and password variables first.
@@ -71,13 +78,14 @@ Wersja Systemu Test
 Polacz Z Internetem Test
   [Documentation]   Testing internet connection
   ...               pinging 8.8.8.8
+  [Tags]     ssh
   Skip   Fill username and password variables first..
-  #Fail   Fill username and password variables first..
   Logowanie lokalne
   Sprawdzenie polaczenia internetowego
   Wylogowanie
 
 Zalogoj Na WP Test
+  [Tags]     selenium   keywords
   Skip   Fill username and password variables first...
   #Fail   Fill username and password variables first...
   Otwarcie przegladarki
