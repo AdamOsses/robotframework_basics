@@ -31,9 +31,14 @@ ${PRZYCISK_ZALOGOJ}   //button[@type="submit"]
 
 *** Test Cases ***
 
-Log To Console Test
+Log To Console And For Loops Test
   Log to console   Dzien dobry
-  Log to console   ${POWITANIE}
+  FOR   ${i}   IN RANGE   10
+    Log to console   ${POWITANIE}
+  END
+  FOR   ${name}   IN   ksieciuniu   o najwspanialszy   o najdoskonalszy   o najszlachetniejszy
+    Log to console   Dzien dobry ${name}.
+  END
 
 Math Test
   ${result}=   Evaluate   ${var_1} + ${var_2}
@@ -55,7 +60,10 @@ Wyswietl Strone Space-X Test
 
 Wersja Systemu Test
   #Fail   Fill username and password variables first.
-  Skip   Fill username and password variables first.
+  ${password_len}=   Get Length   ${PASSWORD}
+  IF   ${password_len} < 4
+     Skip   Fill username and password variables first.
+  END
   Logowanie lokalne
   Wywolanie komendy i sprawdzenie wyniku
   Wylogowanie
