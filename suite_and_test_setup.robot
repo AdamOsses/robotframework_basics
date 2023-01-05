@@ -2,7 +2,9 @@
 Suite Setup     Send Suite Setup Message
 Test Setup     Send Test Setup Message
 Suite Teardown     Send Suite Teardown Message
-TEst Teardown     Send Test Teardown Message
+Test Teardown     Send Test Teardown Message
+
+# Add resource    any_robot_file.robot
 *** Variables ***
 
 
