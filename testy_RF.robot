@@ -1,7 +1,7 @@
 *** Settings ***
 
 resource   resources/resources.robot
-library   lacz_stringi.py
+library   resources/lacz_stringi.py
 
 *** Variables ***
 *** Test Cases ***
